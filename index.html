@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>untoldstories.gr</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
   body {
     margin: 0;
@@ -20,19 +19,6 @@
     align-items: center;
     padding: 15px 30px;
     border-bottom: 1px solid #ccc;
-  }
-
-  .site-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .site-left img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
   }
 
   .site-left h1 {
@@ -51,20 +37,6 @@
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
-    margin-bottom: 5px;
-  }
-
-  .site-right input[type="text"], .site-right input[type="email"] {
-    width: 200px;
-    padding: 5px;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-
-  .site-right button.subscribe {
-    width: 100%;
-    margin-top: 2px;
   }
 
   /* CATEGORIES */
@@ -124,101 +96,59 @@
     font-weight: bold;
   }
 
-  /* FOOTER */
+  /* FOOTER NEWSLETTER */
   footer {
-    border-top: 1px solid #ccc;
-    padding: 30px 20px;
-    text-align: center;
-    font-size: 0.9rem;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-align: right;
   }
 
-  footer a { color: #000; text-decoration: none; }
+  footer input[type="email"] {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
 
+  footer button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 4px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="site-left">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gemini.svg/120px-Gemini.svg.png" alt="Δίδυμοι">
     <h1>untoldstories.gr</h1>
   </div>
-
   <div class="site-right">
-    <button onclick="netlifyIdentity.open('login')">Login / Sign Up</button><br>
-    <input type="text" placeholder="Αναζήτηση άρθρων..."><br>
-    <input type="email" placeholder="Το email σου για newsletter..."><br>
-    <button class="subscribe">Subscribe</button>
+    <button onclick="netlifyIdentity.open('login')">Σύνδεση ή Δημιουργία Λογαριασμού</button>
   </div>
 </header>
 
 <div class="categories">
   <button class="cat-btn active" onclick="showCategory('zodia', this)">Ζώδια</button>
-  <button class="cat-btn" onclick="showCategory('autognosia', this)">Αυτογνωσία</button>
-  <button class="cat-btn" onclick="showCategory('inspiration', this)">Έμπνευση</button>
 </div>
 
 <main>
-
-<!-- ΖΩΔΙΑ -->
 <div id="zodia" class="articles active">
   <article>
     <h2>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h2>
     <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
     <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
   </article>
-  <article>
-    <h2>Οι γυναίκες, η Ρώμη και οι ♊</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-  <article>
-    <h2>Μια πριγκίπισσα που είναι μάγισσα και ένας ♊ με το γκάζι κολλημένο</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
 </div>
-
-<!-- ΑΥΤΟΓΝΩΣΙΑ -->
-<div id="autognosia" class="articles">
-  <article>
-    <h2>Το παιδί μέσα σου</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-  <article>
-    <h2>Ανάμεσα στα άκρα: η δύναμη της εξέλιξης</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-</div>
-
-<!-- ΕΜΠΝΕΥΣΗ -->
-<div id="inspiration" class="articles">
-  <article>
-    <h2>Αναγέννηση και Ελευθερία</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-  <article>
-    <h2>Η τάξη μέσα από το χάος - Ordo ad Chao</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-  <article>
-    <h2>Κέρδισε όταν όλοι σε υποτιμούν</h2>
-    <p>...</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-</div>
-
 </main>
 
 <footer>
-  <p>Επικοινωνία: <a href="mailto:nightmare-1981@hotmail.com">nightmare-1981@hotmail.com</a> | Τηλ: 6979608379</p>
-  <p>Υπηρεσίες: Συγγραφή, Συμβουλευτική</p>
-  <p>© 2026 untoldstories.gr</p>
+  <input type="email" placeholder="Το email σου για newsletter...">
+  <button>Subscribe</button>
 </footer>
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
