@@ -1,227 +1,242 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <title>untoldstories.gr</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>untoldstories.gr</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #000000;
-      line-height: 1.6;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #000;
+  }
 
-    /* HEADER */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
-    }
+  /* HEADER */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 1px solid #ccc;
+  }
 
-    .site-info {
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
+  .site-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
 
-    .header-right {
-      text-align: right;
-    }
+  .site-left img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 
-    .header-right img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin-left: 10px;
-      vertical-align: middle;
-    }
+  .site-left h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
 
-    .header-right button {
-      padding: 8px 12px;
-      margin-bottom: 5px;
-      cursor: pointer;
-      background: #ff7a00;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
+  .site-right {
+    text-align: right;
+  }
 
-    .header-right input[type="text"], .header-right input[type="email"] {
-      padding: 6px;
-      margin-bottom: 5px;
-      width: 200px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
+  .site-right button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
 
-    .header-right button.subscribe {
-      background: #000;
-      color: #fff;
-    }
+  .site-right input[type="text"], .site-right input[type="email"] {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
 
-    /* CATEGORIES */
-    .categories {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      gap: 15px;
-    }
+  .site-right button.subscribe {
+    width: 100%;
+    margin-top: 2px;
+  }
 
-    .categories button {
-      padding: 10px 20px;
-      cursor: pointer;
-      border: 1px solid #ff7a00;
-      background: #fff;
-      color: #ff7a00;
-      border-radius: 4px;
-      font-weight: bold;
-    }
+  /* CATEGORIES */
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
 
-    .categories button.active {
-      background: #ff7a00;
-      color: #fff;
-    }
+  .categories button {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
 
-    /* MAIN */
-    main {
-      max-width: 900px;
-      margin: 0 auto 50px auto;
-      padding: 0 20px;
-    }
+  .categories button.active {
+    background: #000;
+    color: #fff;
+  }
 
-    .articles {
-      display: none;
-    }
+  /* MAIN ARTICLES */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 
-    .articles.active {
-      display: block;
-    }
+  .articles {
+    display: none;
+  }
 
-    article {
-      margin: 15px 0;
-      padding-left: 10px;
-    }
+  .articles.active {
+    display: block;
+  }
 
-    article h3 {
-      margin: 0;
-      font-size: 1.2rem;
-    }
+  article {
+    margin-bottom: 25px;
+  }
 
-    article p {
-      margin: 5px 0;
-    }
+  article h2 {
+    margin: 0 0 5px 0;
+  }
 
-    article a {
-      text-decoration: none;
-      color: #ff7a00;
-      font-weight: bold;
-    }
+  article p {
+    margin: 0 0 5px 0;
+  }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      border-top: 1px solid #ddd;
-      font-size: 0.9rem;
-      color: #555;
-    }
+  article a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    footer a {
-      color: #ff7a00;
-      text-decoration: none;
-    }
-  </style>
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #ccc;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  footer a { color: #000; text-decoration: none; }
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="site-info">untoldstories.gr</div>
-
-    <div class="header-right">
-      <!-- ΕΤΟΙΜΗ ΕΙΚΟΝΑ ΔΙΔΥΜΟΥ ΑΠΟ INTERNET -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gemini.svg/120px-Gemini.svg.png" alt="Δίδυμοι">
-      <br>
-      <button onclick="netlifyIdentity.open('login')">Log In / Sign Up</button>
-      <br>
-      <input type="text" placeholder="Αναζήτηση άρθρων...">
-      <br>
-      <input type="email" placeholder="Το email σου για ενημέρωση...">
-      <button class="subscribe">Subscribe</button>
-    </div>
-  </header>
-
-  <!-- CATEGORIES -->
-  <div class="categories">
-    <button class="cat-btn active" onclick="showCategory('zodia', this)">Ζώδια</button>
-    <button class="cat-btn" onclick="showCategory('autognosia', this)">Αυτογνωσία</button>
+<header>
+  <div class="site-left">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gemini.svg/120px-Gemini.svg.png" alt="Δίδυμοι">
+    <h1>untoldstories.gr</h1>
   </div>
 
-  <main>
-    <!-- ΖΩΔΙΑ -->
-    <div id="zodia" class="articles active">
-      <article>
-        <h3>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h3>
-        <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
-        <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-      </article>
-      <article>
-        <h3>Οι γυναίκες, η Ρώμη και οι ♊</h3>
-        <p>...</p>
-        <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-      </article>
-    </div>
+  <div class="site-right">
+    <button onclick="netlifyIdentity.open('login')">Login / Sign Up</button><br>
+    <input type="text" placeholder="Αναζήτηση άρθρων..."><br>
+    <input type="email" placeholder="Το email σου για newsletter..."><br>
+    <button class="subscribe">Subscribe</button>
+  </div>
+</header>
 
-    <!-- ΑΥΤΟΓΝΩΣΙΑ -->
-    <div id="autognosia" class="articles">
-      <article>
-        <h3>Το παιδί μέσα σου</h3>
-        <p>...</p>
-        <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-      </article>
-      <article>
-        <h3>Ανάμεσα στα άκρα: η δύναμη της εξέλιξης</h3>
-        <p>...</p>
-        <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-      </article>
-    </div>
-  </main>
+<div class="categories">
+  <button class="cat-btn active" onclick="showCategory('zodia', this)">Ζώδια</button>
+  <button class="cat-btn" onclick="showCategory('autognosia', this)">Αυτογνωσία</button>
+  <button class="cat-btn" onclick="showCategory('inspiration', this)">Έμπνευση</button>
+</div>
 
-  <footer>
-    <p>Επικοινωνία: <a href="mailto:your@email.com">your@email.com</a> | Τηλ: 1234567890</p>
-    <p>Υπηρεσίες: Συγγραφή, Συμβουλευτική</p>
-    <p>© 2026 untoldstories.gr</p>
-  </footer>
+<main>
 
-  <!-- NETLIFY IDENTITY -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        if (user) console.log('User logged in:', user.email);
-        else console.log('No user logged in');
-      });
-      window.netlifyIdentity.init();
-    }
+<!-- ΖΩΔΙΑ -->
+<div id="zodia" class="articles active">
+  <article>
+    <h2>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h2>
+    <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+  <article>
+    <h2>Οι γυναίκες, η Ρώμη και οι ♊</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+  <article>
+    <h2>Μια πριγκίπισσα που είναι μάγισσα και ένας ♊ με το γκάζι κολλημένο</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+</div>
 
-    // CATEGORIES JS
-    function showCategory(catId, btn) {
-      const articles = document.querySelectorAll('.articles');
-      articles.forEach(a => a.classList.remove('active'));
+<!-- ΑΥΤΟΓΝΩΣΙΑ -->
+<div id="autognosia" class="articles">
+  <article>
+    <h2>Το παιδί μέσα σου</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+  <article>
+    <h2>Ανάμεσα στα άκρα: η δύναμη της εξέλιξης</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+</div>
 
-      document.getElementById(catId).classList.add('active');
+<!-- ΕΜΠΝΕΥΣΗ -->
+<div id="inspiration" class="articles">
+  <article>
+    <h2>Αναγέννηση και Ελευθερία</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+  <article>
+    <h2>Η τάξη μέσα από το χάος - Ordo ad Chao</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+  <article>
+    <h2>Κέρδισε όταν όλοι σε υποτιμούν</h2>
+    <p>...</p>
+    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+  </article>
+</div>
 
-      // highlight active button
-      const buttons = document.querySelectorAll('.cat-btn');
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-  </script>
+</main>
+
+<footer>
+  <p>Επικοινωνία: <a href="mailto:nightmare-1981@hotmail.com">nightmare-1981@hotmail.com</a> | Τηλ: 6979608379</p>
+  <p>Υπηρεσίες: Συγγραφή, Συμβουλευτική</p>
+  <p>© 2026 untoldstories.gr</p>
+</footer>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (user) console.log('User logged in:', user.email);
+    });
+    window.netlifyIdentity.init();
+  }
+
+  function showCategory(catId, btn) {
+    document.querySelectorAll('.articles').forEach(a => a.classList.remove('active'));
+    document.getElementById(catId).classList.add('active');
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
