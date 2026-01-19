@@ -26,10 +26,6 @@
     margin: 0;
   }
 
-  .site-right {
-    text-align: right;
-  }
-
   .site-right button {
     background: #000;
     color: #fff;
@@ -72,14 +68,11 @@
 
   .articles {
     display: none;
+    margin-bottom: 25px;
   }
 
   .articles.active {
     display: block;
-  }
-
-  article {
-    margin-bottom: 25px;
   }
 
   article h2 {
@@ -133,17 +126,17 @@
 </header>
 
 <div class="categories">
-  <button class="cat-btn active" onclick="showCategory('zodia', this)">Ζώδια</button>
+  <button class="cat-btn" onclick="showCategory('zodia', this)">Ζώδια</button>
 </div>
 
 <main>
-<div id="zodia" class="articles active">
-  <article>
-    <h2>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h2>
-    <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
-    <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-  </article>
-</div>
+  <div id="zodia" class="articles">
+    <article>
+      <h2>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h2>
+      <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
+      <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
+    </article>
+  </div>
 </main>
 
 <footer>
