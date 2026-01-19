@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>untoldstories.gr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -23,24 +24,20 @@
     }
 
     .site-info {
-      display: flex;
-      align-items: center;
-    }
-
-    .site-info img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin-right: 15px;
-    }
-
-    .site-info h1 {
       font-size: 1.8rem;
-      margin: 0;
+      font-weight: bold;
     }
 
     .header-right {
       text-align: right;
+    }
+
+    .header-right img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-left: 10px;
+      vertical-align: middle;
     }
 
     .header-right button {
@@ -67,25 +64,46 @@
       color: #fff;
     }
 
+    /* CATEGORIES */
+    .categories {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 15px;
+    }
+
+    .categories button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: 1px solid #ff7a00;
+      background: #fff;
+      color: #ff7a00;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .categories button.active {
+      background: #ff7a00;
+      color: #fff;
+    }
+
     /* MAIN */
     main {
       max-width: 900px;
-      margin: 30px auto;
+      margin: 0 auto 50px auto;
       padding: 0 20px;
     }
 
-    section.category {
-      margin-bottom: 40px;
+    .articles {
+      display: none;
     }
 
-    section.category h2 {
-      font-size: 1.5rem;
-      border-bottom: 2px solid #ff7a00;
-      padding-bottom: 5px;
+    .articles.active {
+      display: block;
     }
 
     article {
-      margin: 15px 0 15px 20px;
+      margin: 15px 0;
       padding-left: 10px;
     }
 
@@ -95,7 +113,7 @@
     }
 
     article p {
-      margin: 5px 0 0 0;
+      margin: 5px 0;
     }
 
     article a {
@@ -123,12 +141,12 @@
 <body>
 
   <header>
-    <div class="site-info">
-      <img src="twin-sign.png" alt="Ζώδιο Διδύμων">
-      <h1>untoldstories.gr</h1>
-    </div>
+    <div class="site-info">untoldstories.gr</div>
 
     <div class="header-right">
+      <!-- ΕΤΟΙΜΗ ΕΙΚΟΝΑ ΔΙΔΥΜΟΥ ΑΠΟ INTERNET -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gemini.svg/120px-Gemini.svg.png" alt="Δίδυμοι">
+      <br>
       <button onclick="netlifyIdentity.open('login')">Log In / Sign Up</button>
       <br>
       <input type="text" placeholder="Αναζήτηση άρθρων...">
@@ -138,9 +156,15 @@
     </div>
   </header>
 
+  <!-- CATEGORIES -->
+  <div class="categories">
+    <button class="cat-btn active" onclick="showCategory('zodia', this)">Ζώδια</button>
+    <button class="cat-btn" onclick="showCategory('autognosia', this)">Αυτογνωσία</button>
+  </div>
+
   <main>
-    <section class="category">
-      <h2>Ζώδια</h2>
+    <!-- ΖΩΔΙΑ -->
+    <div id="zodia" class="articles active">
       <article>
         <h3>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h3>
         <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
@@ -151,10 +175,10 @@
         <p>...</p>
         <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
       </article>
-    </section>
+    </div>
 
-    <section class="category">
-      <h2>Αυτογνωσία</h2>
+    <!-- ΑΥΤΟΓΝΩΣΙΑ -->
+    <div id="autognosia" class="articles">
       <article>
         <h3>Το παιδί μέσα σου</h3>
         <p>...</p>
@@ -165,7 +189,7 @@
         <p>...</p>
         <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
       </article>
-    </section>
+    </div>
   </main>
 
   <footer>
@@ -183,6 +207,19 @@
         else console.log('No user logged in');
       });
       window.netlifyIdentity.init();
+    }
+
+    // CATEGORIES JS
+    function showCategory(catId, btn) {
+      const articles = document.querySelectorAll('.articles');
+      articles.forEach(a => a.classList.remove('active'));
+
+      document.getElementById(catId).classList.add('active');
+
+      // highlight active button
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
   </script>
 
