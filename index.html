@@ -1,224 +1,182 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <title>Untold Stories</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Untold Stories</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #000000;
-      --muted: #555;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    body.dark {
-      --bg: #000000;
-      --text: #ffffff;
-      --muted: #aaa;
-    }
+<style>
+:root {
+  --text-light: #000;
+  --text-dark: #fff;
+}
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-light);
+  background: url("light.jpg") no-repeat center center fixed;
+  background-size: cover;
+  transition: background 0.6s ease, color 0.6s ease;
+}
 
-    header {
-      padding: 30px 40px 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+body.dark {
+  color: var(--text-dark);
+  background: url("dark.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
 
-    .auth {
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  font-size: 13px;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
-    }
+header a {
+  color: inherit;
+  text-decoration: none;
+  margin-left: 15px;
+}
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      font-size: 0.8rem;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
+/* Categories */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-size: 12px;
+  margin-top: 20px;
+}
 
-    .categories span:hover {
-      text-decoration: underline;
-    }
+nav a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
 
-    .hero {
-      position: relative;
-      height: 280px;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
+/* Intro */
+.intro {
+  text-align: center;
+  margin-top: 60px;
+}
 
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.intro h1 {
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
 
-    .intro {
-      font-size: 0.9rem;
-      margin-top: 10px;
-    }
+.intro p {
+  font-size: 14px;
+  margin: 0;
+}
 
-    .subtitle {
-      font-size: 0.75rem;
-      margin-top: 2px;
-      color: var(--muted);
-    }
+/* Content */
+#content {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 14px;
+}
 
-    .content {
-      margin-top: 40px;
-      display: none;
-    }
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
 
-    .content.active {
-      display: block;
-    }
+footer a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+}
 
-    .under {
-      font-size: 0.9rem;
-      margin-top: 40px;
-    }
+/* Newsletter */
+.newsletter {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
 
-    .links {
-      margin-top: 30px;
-      font-size: 0.85rem;
-    }
+.newsletter input {
+  padding: 6px;
+  font-size: 12px;
+}
 
-    .links a {
-      color: inherit;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    footer {
-      margin-top: 60px;
-      padding: 30px 0;
-      text-align: center;
-    }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 15px;
-    }
-
-    .socials a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 0.9rem;
-      border: 1px solid var(--text);
-      color: var(--text);
-    }
-
-    .newsletter {
-      font-size: 0.75rem;
-    }
-
-    .toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-  </style>
+/* Dark mode button */
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 12px;
+}
+</style>
 </head>
 
 <body>
 
+<div class="toggle" onclick="toggleDark()">dark / light</div>
+
 <header>
-  <div></div>
-  <div class="auth">Σύνδεση / Δημιουργία λογαριασμού</div>
+  <div>untoldstories.gr</div>
+  <div>
+    <a href="#">Σύνδεση</a>
+    <a href="#">Δημιουργία λογαριασμού</a>
+  </div>
 </header>
 
-<div class="container">
+<nav>
+  <a onclick="showCategory()">Intro</a>
+  <a onclick="showCategory()">Σκέψεις</a>
+  <a onclick="showCategory()">Σχέσεις</a>
+  <a onclick="showCategory()">Εξέλιξη</a>
+</nav>
 
-  <!-- CATEGORIES -->
-  <div class="categories">
-    <span onclick="openSection('intro')">Intro</span>
-    <span onclick="openSection('mind')">Νους</span>
-    <span onclick="openSection('relations')">Σχέσεις</span>
-    <span onclick="openSection('evolution')">Εξέλιξη</span>
-  </div>
+<div class="intro">
+  <h1>Untold Stories</h1>
+  <p>τα ανείπωτα</p>
+</div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <img id="heroImg" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" />
-  </div>
+<div id="content"></div>
 
-  <div class="intro">Untold Stories</div>
-  <div class="subtitle">τα ανείπωτα</div>
-
-  <!-- INTRO CONTENT -->
-  <div id="intro" class="content active">
-    <p class="under">
-      <a href="https://substack.com/home/post/p-184873120" target="_blank">
-        Διάβασε το άρθρο στο Substack →
-      </a>
-    </p>
-
-    <div class="links">
-      <a href="https://buymeacoffee.com/USERNAME" target="_blank">Buy Me a Coffee</a>
-    </div>
-  </div>
-
-  <!-- OTHER CATEGORIES -->
-  <div id="mind" class="content"><div class="under">under construction</div></div>
-  <div id="relations" class="content"><div class="under">under construction</div></div>
-  <div id="evolution" class="content"><div class="under">under construction</div></div>
-
+<div class="newsletter">
+  <form action="https://mariospikoulas.substack.com/subscribe" target="_blank">
+    <input type="email" placeholder="newsletter email">
+  </form>
 </div>
 
 <footer>
-  <div class="socials">
-    <a href="https://www.facebook.com/Diffidati91" target="_blank">F</a>
-    <a href="https://www.instagram.com/_somebody91_/" target="_blank">I</a>
-  </div>
-
-  <div class="newsletter">
-    Newsletter μέσω Substack
-  </div>
+  <a href="https://www.facebook.com/Diffidati91" target="_blank">f</a>
+  <a href="https://www.instagram.com/_somebody91_/" target="_blank">i</a>
 </footer>
 
-<div class="toggle" onclick="toggleMode()">dark / light</div>
-
 <script>
-  function openSection(id) {
-    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+function showCategory() {
+  document.getElementById("content").innerHTML = "under construction";
+}
 
-  function toggleMode() {
-    document.body.classList.toggle('dark');
-    document.getElementById('heroImg').src =
-      document.body.classList.contains('dark')
-      ? 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee'
-      : 'https://images.unsplash.com/photo-1501785888041-af3ef285b470';
-  }
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+// auto dark mode
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add("dark");
+}
 </script>
 
 </body>
