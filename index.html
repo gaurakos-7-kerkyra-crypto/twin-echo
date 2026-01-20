@@ -1,163 +1,175 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<title>untoldstories.gr</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff;
-    color: #000;
-  }
+  <meta charset="UTF-8" />
+  <title>untoldstories.gr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  /* HEADER */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    border-bottom: 1px solid #ccc;
-  }
+  <!-- Netlify Identity -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  .site-left h1 {
-    font-size: 1.8rem;
-    margin: 0;
-  }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  .site-right button {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #000;
+      background: 
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
 
-  /* CATEGORIES */
-  .categories {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin: 20px 0;
-  }
+    a {
+      color: #000;
+      text-decoration: none;
+    }
 
-  .categories button {
-    padding: 10px 20px;
-    border: 1px solid #000;
-    background: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: all 0.2s;
-  }
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .categories button.active {
-    background: #000;
-    color: #fff;
-  }
+    .auth {
+      font-size: 13px;
+    }
 
-  /* MAIN ARTICLES */
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+    .auth a {
+      margin-left: 15px;
+      cursor: pointer;
+    }
 
-  .articles {
-    display: none;
-    margin-bottom: 25px;
-  }
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-  .articles.active {
-    display: block;
-  }
+    .intro {
+      text-align: center;
+      margin-top: 60px;
+    }
 
-  article h2 {
-    margin: 0 0 5px 0;
-  }
+    .intro h1 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: normal;
+    }
 
-  article p {
-    margin: 0 0 5px 0;
-  }
+    .intro p {
+      margin: 2px 0 0 0;
+      font-size: 13px;
+    }
 
-  article a {
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-  }
+    .links {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+    }
 
-  /* FOOTER NEWSLETTER */
-  footer {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    text-align: right;
-  }
+    .links a {
+      display: block;
+      margin: 10px 0;
+    }
 
-  footer input[type="email"] {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
+    footer {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+    }
 
-  footer button {
-    padding: 5px 10px;
-    margin-left: 5px;
-    border-radius: 4px;
-    border: none;
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-  }
-</style>
+    .newsletter {
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      font-size: 12px;
+    }
+
+    .socials {
+      margin-top: 10px;
+    }
+
+    .socials a {
+      margin: 0 8px;
+    }
+
+    @media (max-width: 768px) {
+      .categories {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <div class="site-left">
-    <h1>untoldstories.gr</h1>
-  </div>
-  <div class="site-right">
-    <button onclick="netlifyIdentity.open('login')">Σύνδεση ή Δημιουργία Λογαριασμού</button>
+  <div></div>
+  <div class="auth">
+    <a onclick="netlifyIdentity.open()">Σύνδεση</a> |
+    <a onclick="netlifyIdentity.open()">Δημιουργία λογαριασμού</a>
   </div>
 </header>
 
-<div class="categories">
-  <button class="cat-btn" onclick="showCategory('zodia', this)">Ζώδια</button>
-</div>
+<nav class="categories">
+  <a href="#">Intro</a>
+  <a href="#">Σχέσεις</a>
+  <a href="#">Σκέψεις</a>
+  <a href="#">Εξέλιξη</a>
+  <a href="#">Χάος & Τάξη</a>
+</nav>
 
-<main>
-  <div id="zodia" class="articles">
-    <article>
-      <h2>Το ζώδιο που όλοι έχουν άποψη γι’ αυτό</h2>
-      <p>Αν ζεις μια τακτοποιημένη ζωή με κουτάκια και πλάνα, τότε αυτό το κείμενο μάλλον δεν είναι για σένα.</p>
-      <a href="https://substack.com/ARTICLE_LINK" target="_blank">Διάβασε στο Substack</a>
-    </article>
-  </div>
-</main>
+<section class="intro">
+  <h1>untoldstories.gr</h1>
+  <p>τα ανείπωτα</p>
+</section>
+
+<section class="links">
+  <a href="https://mariospikoulas.substack.com" target="_blank">
+    Διάβασε τα κείμενα στο Substack
+  </a>
+
+  <a href="https://buymeacoffee.com/USERNAME" target="_blank">
+    ☕ Buy me a coffee
+  </a>
+</section>
 
 <footer>
-  <input type="email" placeholder="Το email σου για newsletter...">
-  <button>Subscribe</button>
+  <div class="socials">
+    <a href="https://www.facebook.com/Diffidati91" target="_blank">Facebook</a>
+    |
+    <a href="https://www.instagram.com/_somebody91_/" target="_blank">Instagram</a>
+  </div>
 </footer>
 
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<div class="newsletter">
+  <a href="https://mariospikoulas.substack.com/subscribe" target="_blank">
+    Newsletter
+  </a>
+</div>
+
 <script>
   if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', user => {
-      if (user) console.log('User logged in:', user.email);
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/";
+        });
+      }
     });
-    window.netlifyIdentity.init();
-  }
-
-  function showCategory(catId, btn) {
-    document.querySelectorAll('.articles').forEach(a => a.classList.remove('active'));
-    document.getElementById(catId).classList.add('active');
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
   }
 </script>
 
