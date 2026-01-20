@@ -1,201 +1,161 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <title>Untold Stories</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <style>
-    /* Βασικό Στυλ */
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #000000;
-      line-height: 1.6;
-      transition: background 0.5s, color 0.5s;
-    }
+<meta charset="UTF-8">
+<title>Untold Stories</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* Dark mode */
-    body.dark-mode {
-      background: url('dark-lake-night.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #ffffff;
-    }
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#000000;
+}
+body.dark{
+  --bg:#000000;
+  --text:#ffffff;
+}
 
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+body{
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
 
-    .auth {
-      font-size: 0.9rem;
-    }
+.background{
+  position:fixed;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  z-index:-1;
+}
+body.light .background{
+  background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+}
+body.dark .background{
+  background-image:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
+}
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-    }
+header{
+  padding:20px;
+  text-align:center;
+}
 
-    .categories button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: inherit;
-      font-weight: bold;
-    }
+.categories{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  font-size:13px;
+  margin-bottom:30px;
+}
 
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+.categories a{
+  text-decoration:none;
+  color:var(--text);
+  cursor:pointer;
+}
 
-    .intro {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
+#home{
+  text-align:center;
+  margin-top:120px;
+}
 
-    .aneiporta {
-      text-align: center;
-      font-size: 0.9rem;
-      margin-bottom: 40px;
-    }
+.intro{
+  font-size:20px;
+  margin-bottom:0;
+}
 
-    article {
-      margin-bottom: 30px;
-      display: none;
-    }
+.subintro{
+  font-size:14px;
+}
 
-    article h2 {
-      font-size: 1.2rem;
-      color: #000;
-    }
+#category-page{
+  display:none;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
 
-    article p {
-      margin-top: 10px;
-    }
+.toggle{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  font-size:12px;
+  cursor:pointer;
+}
 
-    .under-construction {
-      text-align: center;
-      font-style: italic;
-      margin: 20px 0;
-      display: none;
-    }
+.socials{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:12px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.8rem;
-    }
-
-    .newsletter {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-    }
-
-    .social-media {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social-media a img {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-    }
-
-    .mode-toggle {
-      position: fixed;
-      left: 20px;
-      bottom: 20px;
-      cursor: pointer;
-      background: rgba(0,0,0,0.1);
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-
-  </style>
+.socials a{
+  width:30px;
+  height:30px;
+  border:1px solid var(--text);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  text-decoration:none;
+  color:var(--text);
+}
+</style>
 </head>
-<body>
 
-  <header>
-    <div class="logo">UntoldStories.gr</div>
-    <div class="auth">Σύνδεση / Δημιουργία λογαριασμού</div>
-  </header>
+<body class="light">
+<div class="background"></div>
 
+<header>
   <div class="categories">
-    <button onclick="showCategory('sxeseis')">Σχέσεις</button>
-    <button onclick="showCategory('skepsi')">Σκέψη</button>
-    <button onclick="showCategory('exelixi')">Εξέλιξη</button>
-    <button onclick="showCategory('anthropina')">Ανθρώπινα</button>
+    <a onclick="openCategory()">Intro</a>
+    <a onclick="openCategory()">Σκέψεις</a>
+    <a onclick="openCategory()">Σχέσεις</a>
+    <a onclick="openCategory()">Εξέλιξη</a>
   </div>
+</header>
 
-  <main>
-    <div class="intro">Intro</div>
-    <div class="aneiporta">Τα Ανείπωτα</div>
+<section id="home">
+  <div class="intro">Intro</div>
+  <div class="subintro">Τα ανείπωτα</div>
+</section>
 
-    <!-- Άρθρα -->
-    <div id="sxeseis" class="category">
-      <div class="under-construction">Under Construction</div>
-    </div>
+<section id="category-page">
+  Under construction
+</section>
 
-    <div id="skepsi" class="category">
-      <div class="under-construction">Under Construction</div>
-    </div>
+<div class="toggle" onclick="toggleMode()">Light / Dark</div>
 
-    <div id="exelixi" class="category">
-      <div class="under-construction">Under Construction</div>
-    </div>
+<div class="socials">
+  <a href="https://www.facebook.com/Diffidati91" target="_blank">f</a>
+  <a href="https://www.instagram.com/_somebody91_/" target="_blank">i</a>
+</div>
 
-    <div id="anthropina" class="category">
-      <div class="under-construction">Under Construction</div>
-    </div>
+<script>
+function openCategory(){
+  document.getElementById("home").style.display="none";
+  document.getElementById("category-page").style.display="flex";
+}
 
-  </main>
-
-  <footer>
-    <div class="newsletter">
-      <form action="https://mariospikoulas.substack.com" target="_blank">
-        <input type="email" placeholder="Email για Newsletter" required>
-        <button type="submit">Εγγραφή</button>
-      </form>
-    </div>
-
-    <div class="social-media">
-      <a href="https://www.facebook.com/Diffidati91" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
-      <a href="https://www.instagram.com/_somebody91_/" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
-    </div>
-  </footer>
-
-  <div class="mode-toggle" onclick="toggleMode()">Dark / Light Mode</div>
-
-  <script>
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
-    function showCategory(catId) {
-      const categories = document.querySelectorAll('.category');
-      categories.forEach(cat => cat.style.display = 'none');
-      document.getElementById(catId).style.display = 'block';
-    }
-  </script>
+function toggleMode(){
+  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
+}
+</script>
 
 </body>
 </html>
