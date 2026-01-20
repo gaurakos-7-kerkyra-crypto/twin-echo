@@ -1,183 +1,168 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<title>Untold Stories</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>untoldstories.gr</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-image: url("light.jpg");
+      --text-color: #000;
+      --overlay: rgba(255,255,255,0.6);
+    }
 
-<style>
-:root {
-  --text-light: #000;
-  --text-dark: #fff;
-}
+    body.dark {
+      --bg-image: url("dark.jpg");
+      --text-color: #fff;
+      --overlay: rgba(0,0,0,0.55);
+    }
 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: var(--text-light);
-  background: url("light.jpg") no-repeat center center fixed;
-  background-size: cover;
-  transition: background 0.6s ease, color 0.6s ease;
-}
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-body.dark {
-  color: var(--text-dark);
-  background: url("dark.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
+    body {
+      margin: 0;
+      color: var(--text-color);
+      background: var(--bg-image) no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+    }
 
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  font-size: 13px;
-}
+    .overlay {
+      background: var(--overlay);
+      min-height: 100vh;
+      padding: 30px 20px 80px;
+    }
 
-header a {
-  color: inherit;
-  text-decoration: none;
-  margin-left: 15px;
-}
+    /* Categories */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      margin-bottom: 25px;
+      cursor: pointer;
+    }
 
-/* Categories */
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  font-size: 12px;
-  margin-top: 20px;
-}
+    .categories div:hover {
+      text-decoration: underline;
+    }
 
-nav a {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
+    /* Content */
+    .content {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 13px;
+    }
 
-/* Intro */
-.intro {
-  text-align: center;
-  margin-top: 60px;
-}
+    h1 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      font-weight: normal;
+    }
 
-.intro h1 {
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 2px;
-}
+    .subtitle {
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
 
-.intro p {
-  font-size: 14px;
-  margin: 0;
-}
+    .under {
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-top: 40px;
+    }
 
-/* Content */
-#content {
-  text-align: center;
-  margin-top: 60px;
-  font-size: 14px;
-}
+    /* Social */
+    .social {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+    }
 
-/* Footer */
-footer {
-  position: fixed;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
+    .social a {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-color);
+      text-decoration: none;
+    }
 
-footer a {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid currentColor;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: inherit;
-  font-size: 14px;
-}
-
-/* Newsletter */
-.newsletter {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-
-.newsletter input {
-  padding: 6px;
-  font-size: 12px;
-}
-
-/* Dark mode button */
-.toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 12px;
-}
-</style>
+    /* Dark toggle */
+    .toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="overlay">
 
-<div class="toggle" onclick="toggleDark()">dark / light</div>
+    <!-- Categories -->
+    <div class="categories">
+      <div onclick="showIntro()">Intro</div>
+      <div onclick="showUnder()">Σκέψεις</div>
+      <div onclick="showUnder()">Σχέσεις</div>
+      <div onclick="showUnder()">Εσωτερική Διαδρομή</div>
+    </div>
 
-<header>
-  <div>untoldstories.gr</div>
-  <div>
-    <a href="#">Σύνδεση</a>
-    <a href="#">Δημιουργία λογαριασμού</a>
+    <!-- Content -->
+    <div class="content" id="mainContent">
+      <h1>το ζώδιο που όλοι έχουν άποψη για αυτό</h1>
+      <div class="subtitle">τα ανείπωτα</div>
+
+      <p>
+        Κάποια πράγματα δεν γράφονται για να εξηγηθούν.
+        Γράφονται για να αναγνωριστούν.
+      </p>
+    </div>
+
   </div>
-</header>
 
-<nav>
-  <a onclick="showCategory()">Intro</a>
-  <a onclick="showCategory()">Σκέψεις</a>
-  <a onclick="showCategory()">Σχέσεις</a>
-  <a onclick="showCategory()">Εξέλιξη</a>
-</nav>
+  <!-- Social -->
+  <div class="social">
+    <a href="https://www.facebook.com/Diffidati91" target="_blank">f</a>
+    <a href="https://www.instagram.com/_somebody91_/" target="_blank">i</a>
+  </div>
 
-<div class="intro">
-  <h1>Untold Stories</h1>
-  <p>τα ανείπωτα</p>
-</div>
+  <!-- Dark toggle -->
+  <div class="toggle" onclick="toggleDark()">light / dark</div>
 
-<div id="content"></div>
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle("dark");
+    }
 
-<div class="newsletter">
-  <form action="https://mariospikoulas.substack.com/subscribe" target="_blank">
-    <input type="email" placeholder="newsletter email">
-  </form>
-</div>
+    function showUnder() {
+      document.getElementById("mainContent").innerHTML =
+        '<div class="under">UNDER CONSTRUCTION</div>';
+    }
 
-<footer>
-  <a href="https://www.facebook.com/Diffidati91" target="_blank">f</a>
-  <a href="https://www.instagram.com/_somebody91_/" target="_blank">i</a>
-</footer>
-
-<script>
-function showCategory() {
-  document.getElementById("content").innerHTML = "under construction";
-}
-
-function toggleDark() {
-  document.body.classList.toggle("dark");
-}
-
-// auto dark mode
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.body.classList.add("dark");
-}
-</script>
-
+    function showIntro() {
+      document.getElementById("mainContent").innerHTML = `
+        <h1>το ζώδιο που όλοι έχουν άποψη για αυτό</h1>
+        <div class="subtitle">τα ανείπωτα</div>
+        <p>
+          Κάποια πράγματα δεν γράφονται για να εξηγηθούν.
+          Γράφονται για να αναγνωριστούν.
+        </p>
+      `;
+    }
+  </script>
 </body>
 </html>
