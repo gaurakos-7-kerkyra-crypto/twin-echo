@@ -1,168 +1,201 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <title>untoldstories.gr</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <title>Untold Stories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <style>
-    :root {
-      --bg-image: url("light.jpg");
-      --text-color: #000;
-      --overlay: rgba(255,255,255,0.6);
-    }
-
-    body.dark {
-      --bg-image: url("dark.jpg");
-      --text-color: #fff;
-      --overlay: rgba(0,0,0,0.55);
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
+    /* Βασικό Στυλ */
     body {
       margin: 0;
-      color: var(--text-color);
-      background: var(--bg-image) no-repeat center center fixed;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    /* Dark mode */
+    body.dark-mode {
+      background: url('dark-lake-night.jpg') no-repeat center center fixed;
       background-size: cover;
-      min-height: 100vh;
+      color: #ffffff;
     }
 
-    .overlay {
-      background: var(--overlay);
-      min-height: 100vh;
-      padding: 30px 20px 80px;
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
     }
 
-    /* Categories */
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .auth {
+      font-size: 0.9rem;
+    }
+
     .categories {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      font-size: 12px;
-      margin-bottom: 25px;
+      gap: 15px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .categories button {
+      background: none;
+      border: none;
       cursor: pointer;
+      color: inherit;
+      font-weight: bold;
     }
 
-    .categories div:hover {
-      text-decoration: underline;
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    /* Content */
-    .content {
-      max-width: 700px;
-      margin: auto;
+    .intro {
       text-align: center;
-      font-size: 13px;
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
 
-    h1 {
-      font-size: 18px;
-      margin-bottom: 5px;
-      font-weight: normal;
+    .aneiporta {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-bottom: 40px;
     }
 
-    .subtitle {
-      font-size: 12px;
-      margin-bottom: 25px;
+    article {
+      margin-bottom: 30px;
+      display: none;
     }
 
-    .under {
-      font-size: 14px;
-      letter-spacing: 2px;
-      margin-top: 40px;
+    article h2 {
+      font-size: 1.2rem;
+      color: #000;
     }
 
-    /* Social */
-    .social {
-      position: fixed;
+    article p {
+      margin-top: 10px;
+    }
+
+    .under-construction {
+      text-align: center;
+      font-style: italic;
+      margin: 20px 0;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.8rem;
+    }
+
+    .newsletter {
+      position: absolute;
+      right: 20px;
       bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
     }
 
-    .social a {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--text-color);
+    .social-media {
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 12px;
-      color: var(--text-color);
-      text-decoration: none;
+      gap: 15px;
+      margin-top: 20px;
     }
 
-    /* Dark toggle */
-    .toggle {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-size: 11px;
-      cursor: pointer;
+    .social-media a img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
     }
+
+    .mode-toggle {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.1);
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
   </style>
 </head>
-
 <body>
-  <div class="overlay">
 
-    <!-- Categories -->
-    <div class="categories">
-      <div onclick="showIntro()">Intro</div>
-      <div onclick="showUnder()">Σκέψεις</div>
-      <div onclick="showUnder()">Σχέσεις</div>
-      <div onclick="showUnder()">Εσωτερική Διαδρομή</div>
-    </div>
+  <header>
+    <div class="logo">UntoldStories.gr</div>
+    <div class="auth">Σύνδεση / Δημιουργία λογαριασμού</div>
+  </header>
 
-    <!-- Content -->
-    <div class="content" id="mainContent">
-      <h1>το ζώδιο που όλοι έχουν άποψη για αυτό</h1>
-      <div class="subtitle">τα ανείπωτα</div>
-
-      <p>
-        Κάποια πράγματα δεν γράφονται για να εξηγηθούν.
-        Γράφονται για να αναγνωριστούν.
-      </p>
-    </div>
-
+  <div class="categories">
+    <button onclick="showCategory('sxeseis')">Σχέσεις</button>
+    <button onclick="showCategory('skepsi')">Σκέψη</button>
+    <button onclick="showCategory('exelixi')">Εξέλιξη</button>
+    <button onclick="showCategory('anthropina')">Ανθρώπινα</button>
   </div>
 
-  <!-- Social -->
-  <div class="social">
-    <a href="https://www.facebook.com/Diffidati91" target="_blank">f</a>
-    <a href="https://www.instagram.com/_somebody91_/" target="_blank">i</a>
-  </div>
+  <main>
+    <div class="intro">Intro</div>
+    <div class="aneiporta">Τα Ανείπωτα</div>
 
-  <!-- Dark toggle -->
-  <div class="toggle" onclick="toggleDark()">light / dark</div>
+    <!-- Άρθρα -->
+    <div id="sxeseis" class="category">
+      <div class="under-construction">Under Construction</div>
+    </div>
+
+    <div id="skepsi" class="category">
+      <div class="under-construction">Under Construction</div>
+    </div>
+
+    <div id="exelixi" class="category">
+      <div class="under-construction">Under Construction</div>
+    </div>
+
+    <div id="anthropina" class="category">
+      <div class="under-construction">Under Construction</div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="newsletter">
+      <form action="https://mariospikoulas.substack.com" target="_blank">
+        <input type="email" placeholder="Email για Newsletter" required>
+        <button type="submit">Εγγραφή</button>
+      </form>
+    </div>
+
+    <div class="social-media">
+      <a href="https://www.facebook.com/Diffidati91" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+      <a href="https://www.instagram.com/_somebody91_/" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a>
+    </div>
+  </footer>
+
+  <div class="mode-toggle" onclick="toggleMode()">Dark / Light Mode</div>
 
   <script>
-    function toggleDark() {
-      document.body.classList.toggle("dark");
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
     }
 
-    function showUnder() {
-      document.getElementById("mainContent").innerHTML =
-        '<div class="under">UNDER CONSTRUCTION</div>';
-    }
-
-    function showIntro() {
-      document.getElementById("mainContent").innerHTML = `
-        <h1>το ζώδιο που όλοι έχουν άποψη για αυτό</h1>
-        <div class="subtitle">τα ανείπωτα</div>
-        <p>
-          Κάποια πράγματα δεν γράφονται για να εξηγηθούν.
-          Γράφονται για να αναγνωριστούν.
-        </p>
-      `;
+    function showCategory(catId) {
+      const categories = document.querySelectorAll('.category');
+      categories.forEach(cat => cat.style.display = 'none');
+      document.getElementById(catId).style.display = 'block';
     }
   </script>
+
 </body>
 </html>
